@@ -1,8 +1,16 @@
+import palavras from "./palavras";
+import Jogo from "./components/Jogo";
+import Letras from "./components/Letras";
+import Chute from "./components/Chute";
 
 function App() {
-  return (
-    <div className="App">Jogo da Forca</div>
-  );
+   return (
+      <>
+         <Jogo />
+         <Letras />
+         <Chute />
+      </>
+   );
 }
 
 export default App;
