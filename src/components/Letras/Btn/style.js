@@ -16,10 +16,10 @@ export const Key = styled.button`
     }
     &.enabledButton{
         background-color: #E1ECF4;
-        color: #7AA7C7;
+        color: #39739D;
         &:hover{
             cursor: pointer;
-            background-color: #7AA7C7;
+            background-color: #39739D;
             color: #E1ECF4;
         }
     }

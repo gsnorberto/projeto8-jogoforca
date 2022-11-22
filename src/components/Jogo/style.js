@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+    font-family: 'Roboto', sans-serif;
     max-width: 1170px;
     margin: 0 auto;
     padding: 30px;
@@ -44,7 +45,7 @@ export const Keys = styled.div`
 `
 
 export const Underline = styled.div`
-    font-size: 50px;
+    font-size: 35px;
     font-weight: 700;
 `
 
