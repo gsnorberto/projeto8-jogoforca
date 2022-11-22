@@ -1,7 +1,7 @@
+import { Key } from "./style.js";
 
-
-export default function (){
+export default function ({letter, disabledBtn}){
     return(
-        <div></div>
+        <Key className={disabledBtn ? 'disabledButton': 'enabledButton'} disabled={disabledBtn}>{letter}</Key>
     )
 }
