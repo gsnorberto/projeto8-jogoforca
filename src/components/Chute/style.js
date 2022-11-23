@@ -27,17 +27,24 @@ export const Button = styled.button`
     font-size: 16px;
     font-weight: bold;
     color: #3C76A1;
-    border: 1px solid #3C76A1;
+    border: 1px solid #7AA7C7;
     background-color: #E1ECF4;
     border-radius: 3px;
     padding: 5px 15px;
 
-    &:hover{
-        background-color: #3C76A1;
-        color: #FFFFFF;
-        cursor: pointer;
+    &.disabledButton{
+        background-color: #798A9F;
+        color: #9FAAB5;
     }
-    
+    &.enabledButton{
+        background-color: #E1ECF4;
+        color: #39739D;
+        &:hover{
+            cursor: pointer;
+            background-color: #39739D;
+            color: #E1ECF4;
+        }
+    }
 `
 export const Row = styled.div`
     display: flex;

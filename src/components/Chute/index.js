@@ -1,12 +1,12 @@
 import { Container, Title, Input, Button, Row } from "./style"
 
-export default function () {
+export default function ({disabledBtn}) {
    return (
       <Container>
          <Row>
             <Title>Já sei a palavra! </Title>
-            <Input />
-            <Button>Chutar</Button>
+            <Input disabled={disabledBtn}/>
+            <Button className={disabledBtn ? 'disabledButton': 'enabledButton'} disabled={disabledBtn}>Chutar</Button>
          </Row>
       </Container>
    )

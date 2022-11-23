@@ -1,18 +1,18 @@
 import { Container, HangmanImage, StartButton, Row, Column, Underline } from "./style"
 
-export default function () {
+export default function ({hangmanImage, startGame, randomWord}) {
    let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-   let testWord = ['t', 'e', 's', 't', 'e'];
+   console.log(randomWord);
 
    return (
       <Container>
          <Row>
-            <HangmanImage src="./assets/images/forca0.png"></HangmanImage>
+            <HangmanImage src={`./assets/images/${hangmanImage}`}></HangmanImage>
             <Column>
-               <StartButton>Escolher Palavra</StartButton>
+               <StartButton onClick={startGame}>Escolher Palavra</StartButton>
 
                <Underline>
-                  {testWord.map((e, ind) => "_ ")}
+                  {randomWord.map((e, ind) => "_ ")}
                </Underline>
                
             </Column>
