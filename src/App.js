@@ -17,6 +17,7 @@ function App() {
       setDisabledBtn(false); // Enable buttons
       setHangmanImage('forca0.png'); // Initial hangman image
       setNumErrors(0);
+      setclickedLetters([]);
 
       // random word
       let randomPosition = Math.floor(Math.random() * (palavras.length + 1)); // random position
@@ -28,9 +29,10 @@ function App() {
       setclickedLetters(clickedLetters => [...clickedLetters, clickedLetter]);
 
       // if the letter does not exist in the word
-      if(!clickedLetters.includes(clickedLetter)){
+      if(!randomWord.includes(clickedLetter)){
+         console.log("teste");
          setNumErrors(numErrors + 1);
-         setHangmanImage(`forca${numErrors}.png`)
+         setHangmanImage(`forca${numErrors+1}.png`)
       }
    }
 
