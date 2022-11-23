@@ -10,7 +10,9 @@ function App() {
    const [hangmanImage, setHangmanImage] = useState('forca0.png');
    const [randomWord, setRandomWord] = useState([]);
    const [numErrors, setNumErrors] = useState(0);
+   const [clickedLetters, setclickedLetters] = useState([]); // EX: ['a', 'g', 'q']
 
+   // Start new game
    const startGame = () => {
       setDisabledBtn(false); // Enable buttons
       setHangmanImage('forca0.png'); // Initial hangman image
@@ -21,10 +23,21 @@ function App() {
       setRandomWord(palavras[randomPosition].split(""));
    }
 
+   // When the user clicks on a letter
+   const gameMove = (clickedLetter) => {
+      setclickedLetters(clickedLetters => [...clickedLetters, clickedLetter]);
+
+      // if the letter does not exist in the word
+      if(!clickedLetters.includes(clickedLetter)){
+         setNumErrors(numErrors + 1);
+         setHangmanImage(`forca${numErrors}.png`)
+      }
+   }
+
    return (
       <>
-         <Jogo hangmanImage={hangmanImage} startGame={startGame} randomWord={randomWord}/>
-         <Letras disabledBtn={disabledBtn} />
+         <Jogo hangmanImage={hangmanImage} clickedLetters={clickedLetters} startGame={startGame} randomWord={randomWord}/>
+         <Letras disabledBtn={disabledBtn} clickedLetters={clickedLetters} gameMove={gameMove}/>
          <Chute disabledBtn={disabledBtn} />
       </>
    );
