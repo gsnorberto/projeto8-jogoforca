@@ -47,5 +47,6 @@ export const Keys = styled.div`
 export const Underline = styled.div`
     font-size: 35px;
     font-weight: 700;
+    color: ${props => props.wordColor}
 `
 

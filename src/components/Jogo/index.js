@@ -1,6 +1,6 @@
 import { Container, HangmanImage, StartButton, Row, Column, Underline } from "./style"
 
-export default function ({hangmanImage, startGame, randomWord, clickedLetters}) {
+export default function ({hangmanImage, startGame, randomWord, clickedLetters, wordColor}) {
    let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
    console.log(randomWord);
 
@@ -11,7 +11,7 @@ export default function ({hangmanImage, startGame, randomWord, clickedLetters}) 
             <Column>
                <StartButton onClick={startGame}>Escolher Palavra</StartButton>
 
-               <Underline>
+               <Underline wordColor={wordColor}>
                   {randomWord.map((letter, indice) => clickedLetters.includes(letter) ? letter : "_ ")}
                </Underline>
                

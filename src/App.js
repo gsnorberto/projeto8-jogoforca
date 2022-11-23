@@ -11,13 +11,15 @@ function App() {
    const [randomWord, setRandomWord] = useState([]);
    const [numErrors, setNumErrors] = useState(0);
    const [clickedLetters, setclickedLetters] = useState([]); // EX: ['a', 'g', 'q']
+   const [wordColor, setWordColor] = useState('#000000');
 
    // Start new game
    const startGame = () => {
       setDisabledBtn(false); // Enable buttons
       setHangmanImage('forca0.png'); // Initial hangman image
-      setNumErrors(0);
       setclickedLetters([]);
+      setWordColor('#000000');
+      setNumErrors(0);
 
       // random word
       let randomPosition = Math.floor(Math.random() * (palavras.length + 1)); // random position
@@ -29,17 +31,46 @@ function App() {
       setclickedLetters(clickedLetters => [...clickedLetters, clickedLetter]);
 
       // if the letter does not exist in the word
-      if(!randomWord.includes(clickedLetter)){
-         console.log("teste");
-         setNumErrors(numErrors + 1);
-         setHangmanImage(`forca${numErrors+1}.png`)
+      if (!randomWord.includes(clickedLetter)) {
+         let aux = numErrors + 1;
+         setNumErrors(aux);
+         setHangmanImage(`forca${aux}.png`)
+
+         // User lose
+         if (aux === 6) {
+            setclickedLetters([...randomWord]);
+            setDisabledBtn(true);
+            setWordColor('#FF0000');
+         }
       }
+      // User won
+      else if (checkWord([...clickedLetters, clickedLetter]) === true) { //word filled completely
+         setDisabledBtn(true);
+         setWordColor('#00FF00');
+      }
+   }
+
+   // checks if the word has been filled in completely
+   const checkWord = (clkLetters) => {
+      console.log("aqui ", clkLetters);
+      for (let i = 0; i < randomWord.length; i++) {
+         if (!clkLetters.includes(randomWord[i])) {
+            return false; // unfilled word
+         }
+      }
+      return true;
    }
 
    return (
       <>
-         <Jogo hangmanImage={hangmanImage} clickedLetters={clickedLetters} startGame={startGame} randomWord={randomWord}/>
-         <Letras disabledBtn={disabledBtn} clickedLetters={clickedLetters} gameMove={gameMove}/>
+         <Jogo
+            hangmanImage={hangmanImage}
+            clickedLetters={clickedLetters}
+            startGame={startGame}
+            randomWord={randomWord}
+            wordColor={wordColor}
+         />
+         <Letras disabledBtn={disabledBtn} clickedLetters={clickedLetters} gameMove={gameMove} />
          <Chute disabledBtn={disabledBtn} />
       </>
    );
