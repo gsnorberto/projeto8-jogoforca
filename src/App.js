@@ -21,6 +21,7 @@ function App() {
       setclickedLetters([]);
       setWordColor('#000000');
       setNumErrors(0);
+      setGuessWord("");
 
       // random word
       let randomPosition = Math.floor(Math.random() * (palavras.length + 1)); // random position
