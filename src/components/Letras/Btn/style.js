@@ -23,4 +23,10 @@ export const Key = styled.button`
             color: #E1ECF4;
         }
     }
+
+    @media (max-width: 768px){
+        width: 30px;
+        height: 30px;
+        margin: 3px;
+    }
 `

@@ -10,6 +10,9 @@ export const Container = styled.div`
 export const Title = styled.div`
     font-size: 20px;
     margin-right: 12px;
+    @media (max-width: 768px){
+        font-size: 17px;
+    }
 `
 
 export const Input = styled.input`
@@ -20,6 +23,13 @@ export const Input = styled.input`
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
     outline: none;
     padding: 0 10px;
+    @media (max-width: 768px){
+        margin: 10px;
+        width: 60%;
+    }
+    @media (max-width: 400px){
+        width: 80%;
+    }
 `
 
 export const Button = styled.button`
@@ -51,4 +61,8 @@ export const Row = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 15px;
+
+    @media (max-width: 768px){
+        flex-direction: column;
+    }
 `
