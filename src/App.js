@@ -12,6 +12,7 @@ function App() {
    const [numErrors, setNumErrors] = useState(0);
    const [clickedLetters, setclickedLetters] = useState([]); // EX: ['a', 'g', 'q']
    const [wordColor, setWordColor] = useState('#000000');
+   const [guessWord, setGuessWord] = useState('');
 
    // Start new game
    const startGame = () => {
@@ -36,21 +37,21 @@ function App() {
          setNumErrors(aux);
          setHangmanImage(`forca${aux}.png`)
 
-         // User lose
+         // User Lose
          if (aux === 6) {
             setclickedLetters([...randomWord]);
             setDisabledBtn(true);
             setWordColor('#FF0000');
          }
       }
-      // User won
+      // User Win
       else if (checkWord([...clickedLetters, clickedLetter]) === true) { //word filled completely
          setDisabledBtn(true);
          setWordColor('#00FF00');
       }
    }
 
-   // checks if the word has been filled in completely
+   // Checks if the word has been filled in completely
    const checkWord = (clkLetters) => {
       console.log("aqui ", clkLetters);
       for (let i = 0; i < randomWord.length; i++) {
@@ -59,6 +60,24 @@ function App() {
          }
       }
       return true;
+   }
+
+   // Guess a value
+   const guessValue = () => {
+      if (guessWord !== '') {
+         let str = randomWord.join('');
+         let str2 = guessWord.toLowerCase();
+
+         setclickedLetters([...randomWord]);
+         setDisabledBtn(true);
+
+         if (str === str2) { // User Win
+            setWordColor('#00FF00');
+         } else {
+            setWordColor('#FF0000'); // User Lose
+            setHangmanImage('forca6.png');
+         }
+      }
    }
 
    return (
@@ -70,8 +89,16 @@ function App() {
             randomWord={randomWord}
             wordColor={wordColor}
          />
-         <Letras disabledBtn={disabledBtn} clickedLetters={clickedLetters} gameMove={gameMove} />
-         <Chute disabledBtn={disabledBtn} />
+         <Letras
+            disabledBtn={disabledBtn}
+            clickedLetters={clickedLetters}
+            gameMove={gameMove} />
+         <Chute
+            disabledBtn={disabledBtn}
+            guessWord={guessWord}
+            setGuessWord={setGuessWord}
+            guessValue={guessValue}
+         />
       </>
    );
 }
