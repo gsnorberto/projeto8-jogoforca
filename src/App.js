@@ -32,14 +32,17 @@ function App() {
       setclickedLetters(clickedLetters => [...clickedLetters, clickedLetter]);
 
       // if the letter does not exist in the word
-      if (!randomWord.includes(clickedLetter)) {
+      // let strAux = randomWord.join("");
+      // let wordWithoutAccent = removeStringAccent(strAux).split("");
+
+      if(!removeArrayAccent(randomWord).includes(clickedLetter)) {
          let aux = numErrors + 1;
          setNumErrors(aux);
          setHangmanImage(`forca${aux}.png`)
 
          // User Lose
          if (aux === 6) {
-            setclickedLetters([...randomWord]);
+            setclickedLetters([...removeArrayAccent(randomWord)]);
             setDisabledBtn(true);
             setWordColor('#FF0000');
          }
@@ -53,9 +56,8 @@ function App() {
 
    // Checks if the word has been filled in completely
    const checkWord = (clkLetters) => {
-      console.log("aqui ", clkLetters);
       for (let i = 0; i < randomWord.length; i++) {
-         if (!clkLetters.includes(randomWord[i])) {
+         if (!clkLetters.includes(removeStringAccent(randomWord[i]))) {
             return false; // unfilled word
          }
       }
@@ -65,10 +67,10 @@ function App() {
    // Guess a value
    const guessValue = () => {
       if (guessWord !== '') {
-         let str = randomWord.join('');
-         let str2 = guessWord.toLowerCase();
+         let str = removeStringAccent(randomWord.join(''));
+         let str2 = removeStringAccent(guessWord).toLowerCase();
 
-         setclickedLetters([...randomWord]);
+         setclickedLetters([...removeArrayAccent(randomWord)]);
          setDisabledBtn(true);
 
          if (str === str2) { // User Win
@@ -80,6 +82,16 @@ function App() {
       }
    }
 
+   // remove accent
+   const removeStringAccent = (str) => {
+      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+   }
+   const removeArrayAccent = (arr) => {
+      let strAux = arr.join("");
+      strAux = strAux.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+      return strAux.split("");
+   }
+
    return (
       <>
          <Jogo
@@ -88,6 +100,7 @@ function App() {
             startGame={startGame}
             randomWord={randomWord}
             wordColor={wordColor}
+            removeStringAccent={removeStringAccent}
          />
          <Letras
             disabledBtn={disabledBtn}

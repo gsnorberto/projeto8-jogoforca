@@ -1,6 +1,6 @@
 import { Container, HangmanImage, StartButton, Row, Column, Underline } from "./style"
 
-export default function ({hangmanImage, startGame, randomWord, clickedLetters, wordColor}) {
+export default function ({hangmanImage, startGame, randomWord, clickedLetters, wordColor, removeStringAccent}) {
    return (
       <Container>
          <Row>
@@ -9,7 +9,7 @@ export default function ({hangmanImage, startGame, randomWord, clickedLetters, w
                <StartButton data-test="choose-word" onClick={startGame}>Escolher Palavra</StartButton>
 
                <Underline data-test="word" data-answer={randomWord.join("")} wordColor={wordColor}>
-                  {randomWord.map((letter) => clickedLetters.includes(letter) ? letter : "_ ")}
+                  {randomWord.map((letter) => clickedLetters.includes(removeStringAccent(letter)) ? letter : "_ ")}
                </Underline>
                
             </Column>
