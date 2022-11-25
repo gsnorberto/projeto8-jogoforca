@@ -4,6 +4,7 @@ import palavras from "./palavras";
 import Jogo from "./components/Jogo";
 import Letras from "./components/Letras";
 import Chute from "./components/Chute";
+import Footer from "./components/Footer";
 
 function App() {
    const [disabledBtn, setDisabledBtn] = useState(true);
@@ -113,6 +114,7 @@ function App() {
             setGuessWord={setGuessWord}
             guessValue={guessValue}
          />
+         <Footer/>
       </>
    );
 }

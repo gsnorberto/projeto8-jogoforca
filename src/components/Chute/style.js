@@ -4,7 +4,8 @@ export const Container = styled.div`
     font-family: 'Roboto', sans-serif;
     max-width: 1170px;
     margin: 0 auto;
-    padding: 30px;
+    padding: 40px;
+    margin-bottom: 30px;
 `
 
 export const Title = styled.div`
@@ -60,7 +61,8 @@ export const Row = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 15px;
+    
+    
 
     @media (max-width: 768px){
         flex-direction: column;
